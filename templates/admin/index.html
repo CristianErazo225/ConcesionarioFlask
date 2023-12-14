@@ -1,0 +1,20 @@
+{% include 'admin/cabecera.html' %}
+<style>
+    body{
+        /* background-color: rgb(111, 111, 123); */
+        background-color: rgb(212, 212, 212);
+    }
+</style>
+<div>
+    <div class="container">
+        <h1 class="display-3">Bienvenido <strong>{{ session['usuario'] }}</strong></h1>
+        <p class="lead">Aqui podra administrar los vehiculos del sitio Web</p>
+        <hr class="my-2">
+        <p class="lead">
+            <a class="btn btn-success btn-lg" href="/admin/autos" role="button">Empezar la gestion</a>
+        </p>
+    </div>
+</div>
+{% include 'admin/pie.html' %}
+
+ 

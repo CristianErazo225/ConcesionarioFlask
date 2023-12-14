@@ -1,0 +1,87 @@
+{% include 'sitio/cabecera.html' %}
+<style>
+    body{
+            /* background-color: rgb(111, 111, 123); */
+            background-color: rgb(67, 67, 96);
+    }
+
+   *{
+     font-family: 'Poppins', sans-serif;
+     margin: 0;
+     padding: 0;
+   }
+
+   .register_posicion{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     min-height: 100vh;
+     background-image: url('templates/admin/imgAdmin/Login_fondo.jpg');
+     background-position: center;
+     background-size: cover;
+     background-image: url(../sitio/img/suvbmq.jpeg);
+   }
+
+   .card{
+            width: 100%;
+            margin: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #e6e6e7;
+            box-shadow: 0px 2px 50px rgba(0,0,0,0.8);
+            cursor: default;
+            transition: all 400ms ease;
+    }
+   
+ </style>
+<!-- ----------------------------------Interfaz del Formulario---------------------------- -->
+<div class="register_posicion">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                
+            </div>
+            <div class="col-md-4">
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        Crear una cuenta
+                    </div>
+                    <div class="card-body">
+                        <form action="/admin/register/guardar" method="post" enctype="multipart/form-data">
+                            {% if mensaje %}
+                              {{msg}}
+                            {% endif %}
+                            <div class="mb-3">
+                              <label for="txtUsuarioRegistro" class="form-label"><i class="fa-solid fa-user"></i> Usuario</label>
+                              <input type="text" class="form-control" name="txtUsuarioRegistro" id="txtUsuarioRegistro"
+                               aria-describedby="helpId" placeholder="Escriba el nombre de usuario">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="txtPasswordRegistro" class="form-label"><i class="fa-solid fa-lock"></i> Contraseña</label>
+                                <input type="password" class="form-control" name="txtPasswordRegistro" id="txtPasswordRegistro"
+                                 aria-describedby="helpId" placeholder="Escriba su constraseña">
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Registrar</button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+    
+

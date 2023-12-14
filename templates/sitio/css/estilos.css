@@ -1,0 +1,26 @@
+#targeta{
+    background-color: #e60606; /* Cambia #ff0000 al color que desees */
+    border: 1px solid #ccc;
+    background: #e60606;
+}
+
+#targeta2{
+    background-color: #e60606; /* Cambia #ff0000 al color que desees */
+    border: 1px solid #ccc;
+    background: #e60606;
+}
+
+.card{
+    background-color: #171414; /* Cambia #ff0000 al color que desees */
+    border: 1px solid #0b0909;
+    background: #e60606;
+}
+
+.custom-card-img {
+    width: 100%;
+    height: auto;
+}
+
+body{
+    background: url(Login_fondo.jpg);
+}

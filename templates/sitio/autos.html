@@ -1,0 +1,87 @@
+{% include 'sitio/cabecera.html' %}
+    <style>/* Estilo para las card de los Automoviles */
+        body{
+            /* background-color: rgb(111, 111, 123); */
+            background-color: rgb(67, 67, 96);
+        }
+
+        .card{
+            width: 100%;
+            margin: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #8585a3;
+            box-shadow: 0px 2px 50px rgba(0,0,0,0.8);
+            cursor: default;
+            transition: all 400ms ease;
+        }
+
+        .card:hover{
+            box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+            transform: translateY(-5%);
+        }
+
+        .card img{
+            width: 700px;
+            height: 200px;
+        }
+
+        #boton{
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        #boton:hover{
+            box-shadow: 0px 1px 10px rgba(0,0,0,1.0);
+        }
+    </style>
+    <br>
+    <br>
+    <br>
+    <div class="container" id="contenedorAutos">
+      <div class="row">
+        {% for auto in autos %}
+            <div class="col-md-3">
+                <div class="card" id="targeta">
+                    <img class="card-img-top img-fluid" src="/img/{{ auto[3] }}" alt="Title">
+                    <div class="card-body">
+                        <h4 class="card-title-center">{{ auto[1] }}</h4>
+                        <h5 class="card-title">{{ auto[2] }}</h5>
+                        <p class="card-text">
+                            <a name="" id="boton" class="btn btn-success" href="#" role="button">Caracteristicas</a>
+                        </p>
+
+                        <!-- Agrega el formulario de guardado -->
+                        <form action="{{ url_for('guardar_card') }}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id2" value="{{ auto[0] }}">
+                            <input type="hidden" name="marca" value="{{ auto[2] }}">
+                            <input type="hidden" name="nombre" value="{{ auto[1] }}">
+                            <input type="hidden" name="imagen" value="{{ auto[3] }}">
+                            <!-- Agrega otros campos ocultos según sea necesario -->
+                            <button type="submit" class="btn btn-primary" id="boton">Agregar al carrito</button>
+                        </form>
+                        <a href="/carrito">
+                            <button type="#" class="btn btn-primary" id="boton"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>  
+        {% endfor %} 
+
+        <br><br>
+        <div class="row justify-content-md-center">
+          <div class="col-md-auto">
+            <span>
+              <!-- {{ pagination.info }} -->
+              <hr />
+            </span>
+            {{ pagination.links }}
+          </div>
+        </div>
+
+    </div>
+
+    </div>
+
+{% include 'sitio/pie.html' %}

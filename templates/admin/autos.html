@@ -1,0 +1,109 @@
+{% include 'admin/cabecera.html' %}
+<!-- ----------------------------------Interfaz del Formulario---------------------------- -->
+<style>
+    .card{
+            width: 95%;
+            margin: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #e6e6e7;
+            box-shadow: 0px 2px 50px rgba(0,0,0,0.8);
+            cursor: default;
+            transition: all 400ms ease;
+    }
+
+    #card1{
+        /* width: 40%; */
+        /* margin: 20px; */
+        border-radius: 8px;
+        overflow: hidden;
+        background: #e6e6e7;
+        box-shadow: 0px 2px 50px rgba(0,0,0,0.8);
+        cursor: default;
+        transition: all 400ms ease;
+    }
+
+    #tabla{
+        border-radius: 8px;
+        overflow: hidden;
+        background: #e6e6e7;
+        box-shadow: 0px 2px 50px rgba(0,0,0,0.8);
+        cursor: default;
+        transition: all 400ms ease;
+    }
+</style>
+<div class="card">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5" id="card1">
+                <div class="card-header">
+                    <i class="fa-solid fa-car-side"></i> Caracteristicas del vehiculo
+                </div>
+                <div class="card-body">
+                    <form action="/admin/autos/guardar" method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label for="" class="form-label"><i class="fa-solid fa-font-awesome"></i> Marca</label>
+                            <input type="text" class="form-control" name="txtMarca"
+                             id="txtMarca" aria-describedby="helpId" placeholder="Escriba la marca del vehiculo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label"><i class="fa-solid fa-grip-lines"></i> Linea del Vehiculo</label>
+                            <input type="text" class="form-control" name="txtNombre"
+                             id="txtNombre" aria-describedby="helpId" placeholder="Escriba la linea del vehiculo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label"><i class="fa-solid fa-image"></i> Imagen</label>
+                            <input type="file" class="form-control" name="txtImagen"
+                             id="txtImagen" aria-describedby="helpId" placeholder="Seleccione la imagen">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    
+                </div>
+            </div>
+
+            <!-- Tabla de carros adicionados -->
+            <div class="col-md-7">
+
+                <div class="table-responsive" id="tabla">
+                    <table class="table table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Marca</th>
+                                <th>Linea</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for auto in autos %}
+                            <tr>
+                                <td scope="row">{{ auto[0] }}</td>
+                                <td>{{ auto[1] }}</td>
+                                <td>{{ auto[2] }}</td>
+                                <td>
+                                    <img width="80" src="/img/{{ auto[3] }}" class="img-fluid rounded-top" alt="">
+                                </td>
+                                <td>
+                                    <form action="/admin/autos/borrar" method="post">
+                                        <input value="{{ auto[0] }}" type="text" name="txtID" id="txtID">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% include 'admin/pie.html' %}

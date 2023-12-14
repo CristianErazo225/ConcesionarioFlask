@@ -1,0 +1,113 @@
+{% include 'sitio/cabecera.html' %}
+<style>/* Estilo para las card de los Automoviles */
+    body{
+            /* background-color: rgb(111, 111, 123); */
+            background-color: rgb(67, 67, 96);
+    }
+    
+    .card{
+        width: 400px;
+        
+        margin: 20px;
+        border-radius: 6px;
+        overflow: hidden;
+        background: #e6e6e7;
+        box-shadow: 0px 2px 50px rgba(0,0,0,0.8);
+        cursor: default;
+        transition: all 400ms ease;
+    }
+
+    .card:hover{
+        box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+        transform: translateY(-5%);
+    }
+
+    .card img{
+        width: 400px;
+        height: 250px;
+    }
+
+    #boton{
+        text-decoration: none;
+       
+        margin-top: 10px;
+    }
+
+    #boton:hover{
+        box-shadow: 0px 1px 10px rgba(0,0,0,1.0);
+    }
+</style>
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for producto in productos %}
+                {% if loop.index % 2 == 1 %}
+                    <div class="row">
+                {% endif %}
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="/img/{{ producto[3] }}" alt="Title">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ producto[2] }} - {{ producto[1] }}</h4>
+                            <p class="card-text">
+                                <form action="/carrito/borrar" method="post">
+                                    <h5>Codigo: </h5><input value="{{ producto[0] }}" type="text" name="txtid2" id="txtid2">
+                                    <br>
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if loop.index % 2 == 0 or loop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!----------------------------------- Card de Resumen de compra --------------------------->
+        <div class="col-md-4">
+            <div class="card fixed-card">
+                <div class="card-body">
+                    <h5 class="card-title">Resumen de Compra</h5>
+
+                    <!-- Lista de productos en el carrito -->
+                    <ul class="list-group mb-3">
+                        {% for producto in productos %}
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">{{ producto[2] }} - {{producto[1]}}</h6>
+                                    <small class="text-muted">{{ producto.cantidad }} x {{ producto.precio_unitario }}</small>
+                                </div>
+                                <span class="text-muted">{{ producto.subtotal }}</span>
+                            </li>
+                        {% endfor %}
+
+                        <!-- Total del carrito -->
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total</span>
+                            <strong>{{ total_del_carrito }}</strong>
+                        </li>
+                    </ul>
+
+                    <!-- Formulario de checkout o botones adicionales -->
+                    <form>
+                        <!-- <form action="/checkout" method="post"></form> -->
+                        <!-- Campos de información del cliente, si es necesario -->
+
+                        <!-- Botón para proceder al pago -->
+                        <button submit="submit" class="btn btn-primary btn-block">Proceder al Pago</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% include 'sitio/pie.html' %}
